@@ -38,3 +38,7 @@
 /CircuitBreakerSpike/packages
 *.user
 /CircuitBreakerSpike/CircuitBreakerSpike.CoreTests/obj/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.Repositories/obj/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.Repositories.UnitTests/obj/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.Repositories/bin/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.Repositories.UnitTests/bin/Debug
