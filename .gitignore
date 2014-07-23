@@ -23,3 +23,17 @@
 *.hex
 *.cache
 *.suo
+/CircuitBreakerSpike/CircuitBreakerSpike.Core.UnitTests/bin/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.Core/bin/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.Core.UnitTests/obj/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.Services/bin/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.Services/obj/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.Services.UnitTests/bin/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.Core/obj/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.Services.UnitTests/obj/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.WebApi/bin
+/CircuitBreakerSpike/CircuitBreakerSpike.WebApi/obj/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.WebApi.UnitTests/obj/Debug
+/CircuitBreakerSpike/CircuitBreakerSpike.WebApi.UnitTests/bin/Debug
+/CircuitBreakerSpike/packages
+*.user
