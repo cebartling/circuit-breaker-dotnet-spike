@@ -13,6 +13,18 @@ namespace CircuitBreakerSpike.Core
         private readonly ICircuitBreakerStateStore _stateStore =
             CircuitBreakerStateStoreFactory.GetCircuitBreakerStateStore();
 
+        public TimeSpan OpenToHalfOpenWaitTime { get; set; }
+
+        public CircuitBreaker()
+        {
+            OpenToHalfOpenWaitTime = new TimeSpan(0,0,0,10);
+        }
+
+        public CircuitBreaker(TimeSpan openToHalfOpenWaitTime)
+        {
+            OpenToHalfOpenWaitTime = openToHalfOpenWaitTime;
+        }
+
         public bool IsClosed
         {
             get { return _stateStore.IsClosed; }
@@ -23,7 +35,10 @@ namespace CircuitBreakerSpike.Core
             get { return !IsClosed; }
         }
 
-        public TimeSpan OpenToHalfOpenWaitTime { get; set; }
+        public bool IsHalfOpen
+        {
+            get { return CircuitBreakerStateEnum.HalfOpen == _stateStore.State; }
+        }
 
         /// <summary>
         ///     Execute an Action with a circuit breaker wrapped around it.

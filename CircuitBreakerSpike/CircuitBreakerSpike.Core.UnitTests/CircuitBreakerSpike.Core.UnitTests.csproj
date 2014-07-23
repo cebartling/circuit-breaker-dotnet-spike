@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="CircuitBreakerStateStoreFactoryTests.cs" />
     <Compile Include="CircuitBreakerStateStoreTests.cs" />
+    <Compile Include="CircuitBreakerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

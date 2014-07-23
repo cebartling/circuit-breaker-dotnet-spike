@@ -37,3 +37,4 @@
 /CircuitBreakerSpike/CircuitBreakerSpike.WebApi.UnitTests/bin/Debug
 /CircuitBreakerSpike/packages
 *.user
+/CircuitBreakerSpike/CircuitBreakerSpike.CoreTests/obj/Debug
