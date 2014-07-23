@@ -5,20 +5,20 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CircuitBreakerSpike.Repositories.UnitTests
 {
     [TestClass]
-    public class OrderManagementRepositoryTests
+    public class InventoryRepositoryTests
     {
-        private IOrderManagementRepository _repository;
+        private IInventoryRepository _repository;
 
         [TestInitialize]
         public void InitializeBeforeEachTest()
         {
-            _repository = new OrderManagementRepository();
+            _repository = new InventoryRepository();
         }
 
         [TestMethod]
-        public void FindOrders_ReturnsEnumerationOfOrders()
+        public void FindOrders_ReturnsEnumerationOfInventoryItems()
         {
-            var orders = _repository.FindOrders();
+            var orders = _repository.FindInventoryItems();
 
             Assert.AreEqual(9, orders.Count());
         }
@@ -27,7 +27,8 @@ namespace CircuitBreakerSpike.Repositories.UnitTests
         public void FindOrders_ThrowsApplicationException()
         {
             _repository.ThrowExceptions = true;
-            _repository.FindOrders();
+            _repository.FindInventoryItems();
         }
+
     }
 }

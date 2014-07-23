@@ -1,8 +1,8 @@
 ﻿namespace CircuitBreakerSpike.Repositories
 {
-    public class Order
+    public class InventoryItem
     {
         private long Id { get; set; }
-        private string OrderNumber { get; set; }
+        private string Name { get; set; }
     }
 }

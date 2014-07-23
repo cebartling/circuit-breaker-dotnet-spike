@@ -57,6 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IInventoryRepository.cs" />
+    <Compile Include="InventoryItem.cs" />
+    <Compile Include="InventoryRepository.cs" />
     <Compile Include="IOrderManagementRepository.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderManagementRepository.cs" />
