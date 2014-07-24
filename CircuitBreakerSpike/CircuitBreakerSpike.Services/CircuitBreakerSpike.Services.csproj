@@ -58,11 +58,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IOrderManagementService.cs" />
+    <Compile Include="OrderManagementService.cs" />
+    <Compile Include="Config\UnityConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CircuitBreakerSpike.Core\CircuitBreakerSpike.Core.csproj">
+      <Project>{0e771535-52ae-4593-a0ef-3751271fb210}</Project>
+      <Name>CircuitBreakerSpike.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CircuitBreakerSpike.Repositories\CircuitBreakerSpike.Repositories.csproj">
+      <Project>{7001fe5f-a428-437f-8333-82bb5441ed35}</Project>
+      <Name>CircuitBreakerSpike.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
