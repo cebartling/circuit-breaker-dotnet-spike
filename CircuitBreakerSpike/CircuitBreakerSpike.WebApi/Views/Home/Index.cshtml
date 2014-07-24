@@ -1,37 +1,57 @@
-﻿<div class="well">
-    <h1>Welcome to the Circuit Breaker pattern</h1>
-    <div ng-controller="OrderManagementController as orderMgmt">
-        
-        <div class="alert alert-success" ng-show="!orderMgmt.hasErrors">
-            <strong>Success!</strong> Things are rolling along nicely.
-        </div>
+﻿<div ng-controller="OrderManagementController as orderMgmt">
 
-        <div class="alert alert-danger" ng-show="orderMgmt.hasErrors">
-            <strong>Failure!</strong> Things aren't rosy on the server.
-        </div>
+
+    <div class="well">
+        <h1>Welcome to the Circuit Breaker pattern demonstration</h1>
+
         
-        <div class="">
-            <div class="pull-left">
-                <button class="btn btn-default"
-                        ng-click="orderMgmt.toggleExceptionThrowingInRepositories()"
-                        ng-class="{true: 'btn-danger', false: 'btn-success'}[orderMgmt.exceptionThrowingEnabled]">
-                    {{orderMgmt.exceptionThrowingButtonText}}
-                </button>                  
-            </div>
+        <hr/>
+        <div>
             <div class="pull-right">
                 <button class="btn btn-default"
-                        ng-click="orderMgmt.doToggleRetrieveOrders()">
+                        ng-click="orderMgmt.toggleRetrieveOrders()"
+                        ng-class="{true: 'btn-danger', false: 'btn-success'}[orderMgmt.isRetrievingOrders]">
                     {{orderMgmt.retrieveOrdersButtonText}}
                 </button>
                 &nbsp;
                 &nbsp;
-                &nbsp;
-               <span class="invocations">
-                    {{orderMgmt.numberOfInvocations}} invocations
-                </span>
+                <button class="btn btn-default"
+                        ng-click="orderMgmt.toggleExceptionThrowingInRepositories()"
+                        ng-class="{true: 'btn-danger', false: 'btn-success'}[orderMgmt.exceptionThrowingEnabled]">
+                    {{orderMgmt.exceptionThrowingButtonText}}
+                </button>
             </div>
             <div class="clearfix"></div>
         </div>
 
     </div>
+
+    <div class="well">
+        <h2>Statistics</h2>
+        
+        <div class="alert alert-success" ng-show="!orderMgmt.hasErrors">
+            <strong>Success!</strong> Things are rolling along nicely on the server.
+        </div>
+
+        <div class="alert alert-danger" ng-show="orderMgmt.hasErrors">
+            <strong>Failure!</strong> Things aren't rosy on the server.
+        </div>
+
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Number of invocations</label>
+                <div class="col-sm-9">
+                    {{orderMgmt.numberOfInvocations}}    
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Elapsed time on last invocation</label>
+                <div class="col-sm-9">
+                    {{orderMgmt.elapsedTimeInMilliseconds}} milliseconds    
+                </div>
+            </div>
+        </form>
+    </div>
+
 </div>

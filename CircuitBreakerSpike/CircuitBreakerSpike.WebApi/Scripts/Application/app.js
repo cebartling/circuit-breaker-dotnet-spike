@@ -10,8 +10,9 @@ var controller = app.controller('OrderManagementController', function($scope, $l
     this.retrieveOrdersButtonText = 'Start retrieving orders';
     this.isRetrievingOrders = false;
     this.exceptionThrowingButtonText = 'Start throwing exceptions';
+    this.elapsedTimeInMilliseconds = 0;
 
-    this.doToggleRetrieveOrders = function() {
+    this.toggleRetrieveOrders = function() {
         if (!this.isRetrievingOrders) {
             $log.info('Starting the retrieval of orders.');
             this.numberOfInvocations = 0;
@@ -28,19 +29,23 @@ var controller = app.controller('OrderManagementController', function($scope, $l
     this.executeOrderRetrieval = function() {
         if (this.isRetrievingOrders) {
             $log.info('Retrieving orders...');
+            var func = $.proxy(function () { this.executeOrderRetrieval(); }, this);
             var promise = $http.get('api/Orders');
+            var startTime = $.now();
             promise.success($.proxy(function(data) {
                 this.numberOfInvocations += 1;
                 this.hasErrors = false;
-                $log.info('Received orders from server-side: ' + data);
+                var endTime = $.now();
+                this.elapsedTimeInMilliseconds = endTime - startTime;
+                setTimeout(func, 2000);
             }, this));
             promise.error($.proxy(function() {
                 this.numberOfInvocations += 1;
                 this.hasErrors = true;
+                var endTime = $.now();
+                this.elapsedTimeInMilliseconds = endTime - startTime;
+                setTimeout(func, 2000);
             }, this));
-
-            var func = $.proxy(function() { this.executeOrderRetrieval(); }, this);
-            setTimeout(func, 2000);
         }
     };
 
