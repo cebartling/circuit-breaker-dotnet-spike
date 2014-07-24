@@ -16,7 +16,7 @@ namespace CircuitBreakerSpike.Services.Config
             Repositories.Config.UnityConfig.RegisterComponents(container);
 
             container
-                .RegisterType<IOrderManagementService, OrderManagementService>();
+                .RegisterType<IOrderManagementService, OrderManagementService>(new HierarchicalLifetimeManager());
         }
     }
 }

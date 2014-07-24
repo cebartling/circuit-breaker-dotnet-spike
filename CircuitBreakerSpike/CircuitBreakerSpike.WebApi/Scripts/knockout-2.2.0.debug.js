@@ -395,7 +395,7 @@ ko.utils = new (function () {
         forceRefresh: function(node) {
             // Workaround for an IE9 rendering bug - https://github.com/SteveSanderson/knockout/issues/209
             if (ieVersion >= 9) {
-                // For text nodes and comment nodes (most likely virtual elements), we will have to refresh the container
+                // For text nodes and comment nodes (most likely virtual elements), we will have to refresh the _container
                 var elem = node.nodeType == 1 ? node : node.parentNode;
                 if (elem.style)
                     elem.style.zoom = elem.style.zoom;
@@ -3289,13 +3289,13 @@ ko.exportSymbol('utils.compareArrays', ko.utils.compareArrays);
 
 (function () {
     // Objective:
-    // * Given an input array, a container DOM node, and a function from array elements to arrays of DOM nodes,
-    //   map the array elements to arrays of DOM nodes, concatenate together all these arrays, and use them to populate the container DOM node
-    // * Next time we're given the same combination of things (with the array possibly having mutated), update the container DOM node
+    // * Given an input array, a _container DOM node, and a function from array elements to arrays of DOM nodes,
+    //   map the array elements to arrays of DOM nodes, concatenate together all these arrays, and use them to populate the _container DOM node
+    // * Next time we're given the same combination of things (with the array possibly having mutated), update the _container DOM node
     //   so that its children is again the concatenation of the mappings of the array elements, but don't re-map any array elements that we
     //   previously mapped - retain those nodes, and just insert/delete other ones
 
-    // "callbackAfterAddingNodes" will be invoked after any "mapping"-generated nodes are inserted into the container node
+    // "callbackAfterAddingNodes" will be invoked after any "mapping"-generated nodes are inserted into the _container node
     // You can use this, for example, to activate bindings on those nodes.
 
     function fixUpNodesToBeMovedOrRemoved(contiguousNodeArray) {

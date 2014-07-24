@@ -163,6 +163,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\UnityContainerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -178,7 +179,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Config\UnityResolver.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -304,6 +307,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CircuitBreakerSpike.Core\CircuitBreakerSpike.Core.csproj">
+      <Project>{0e771535-52ae-4593-a0ef-3751271fb210}</Project>
+      <Name>CircuitBreakerSpike.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CircuitBreakerSpike.Repositories\CircuitBreakerSpike.Repositories.csproj">
+      <Project>{7001fe5f-a428-437f-8333-82bb5441ed35}</Project>
+      <Name>CircuitBreakerSpike.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CircuitBreakerSpike.Services\CircuitBreakerSpike.Services.csproj">
+      <Project>{9e5eb260-8c4b-470f-b09d-3bd00a6fb441}</Project>
+      <Name>CircuitBreakerSpike.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

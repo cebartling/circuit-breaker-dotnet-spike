@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\OrdersControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
   </ItemGroup>
@@ -128,6 +129,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CircuitBreakerSpike.Core\CircuitBreakerSpike.Core.csproj">
+      <Project>{0e771535-52ae-4593-a0ef-3751271fb210}</Project>
+      <Name>CircuitBreakerSpike.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CircuitBreakerSpike.Repositories\CircuitBreakerSpike.Repositories.csproj">
+      <Project>{7001fe5f-a428-437f-8333-82bb5441ed35}</Project>
+      <Name>CircuitBreakerSpike.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CircuitBreakerSpike.Services\CircuitBreakerSpike.Services.csproj">
+      <Project>{9e5eb260-8c4b-470f-b09d-3bd00a6fb441}</Project>
+      <Name>CircuitBreakerSpike.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CircuitBreakerSpike.WebApi\CircuitBreakerSpike.WebApi.csproj">
       <Project>{ACAAC4E3-58F9-4AA2-98A1-3DC329B2E8DA}</Project>
       <Name>CircuitBreakerSpike.WebApi</Name>
