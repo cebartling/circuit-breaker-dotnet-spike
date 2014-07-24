@@ -12,3 +12,4 @@ obj
 out
 *.user
 packages
+*.cache
