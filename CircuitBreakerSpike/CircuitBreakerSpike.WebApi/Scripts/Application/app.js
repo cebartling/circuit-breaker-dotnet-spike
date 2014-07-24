@@ -9,8 +9,9 @@ var controller = app.controller('OrderManagementController', function($scope, $l
     this.numberOfInvocations = 0;
     this.retrieveOrdersButtonText = 'Start retrieving orders';
     this.isRetrievingOrders = false;
+    this.exceptionThrowingButtonText = 'Start throwing exceptions';
 
-    this.doToggleRetrieveOrders = function () {
+    this.doToggleRetrieveOrders = function() {
         if (!this.isRetrievingOrders) {
             $log.info('Starting the retrieval of orders.');
             this.numberOfInvocations = 0;
@@ -28,12 +29,12 @@ var controller = app.controller('OrderManagementController', function($scope, $l
         if (this.isRetrievingOrders) {
             $log.info('Retrieving orders...');
             var promise = $http.get('api/Orders');
-            promise.success($.proxy(function (data) {
+            promise.success($.proxy(function(data) {
                 this.numberOfInvocations += 1;
                 this.hasErrors = false;
                 $log.info('Received orders from server-side: ' + data);
             }, this));
-            promise.error($.proxy(function () {
+            promise.error($.proxy(function() {
                 this.numberOfInvocations += 1;
                 this.hasErrors = true;
             }, this));
@@ -43,16 +44,18 @@ var controller = app.controller('OrderManagementController', function($scope, $l
         }
     };
 
-    this.disableExceptionThrowingInRepositories = function() {
-        $log.info('Disabling exception throwing.');
-
-        this.exceptionThrowingEnabled = false;
-    };
-
-    this.enableExceptionThrowingInRepositories = function() {
-        $log.info('Enabling exception throwing.');
-
-        this.exceptionThrowingEnabled = true;
+    this.toggleExceptionThrowingInRepositories = function() {
+        if (this.exceptionThrowingEnabled) {
+            $log.info('Disabling exception throwing.');
+            this.exceptionThrowingEnabled = false;
+            this.exceptionThrowingButtonText = 'Start throwing exceptions';
+            $http.post('/api/Exceptions', { Enabled: false });
+        } else {
+            $log.info('Enabling exception throwing.');
+            this.exceptionThrowingEnabled = true;
+            this.exceptionThrowingButtonText = 'Stop throwing exceptions';
+            $http.post('/api/Exceptions', { Enabled: true });
+        }
     };
 
 });

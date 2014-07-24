@@ -12,15 +12,10 @@
         
         <div class="">
             <div class="pull-left">
-                <button class="btn btn-default btn-success"
-                        ng-click="orderMgmt.disableExceptionThrowingInRepositories()"
-                        ng-disabled="!orderMgmt.exceptionThrowingEnabled">
-                    Disable exception throwing
-                </button>                  
-                <button class="btn btn-default btn-danger"
-                        ng-click="orderMgmt.enableExceptionThrowingInRepositories()"
-                        ng-disabled="orderMgmt.exceptionThrowingEnabled">
-                    Enable exception throwing
+                <button class="btn btn-default"
+                        ng-click="orderMgmt.toggleExceptionThrowingInRepositories()"
+                        ng-class="{true: 'btn-danger', false: 'btn-success'}[orderMgmt.exceptionThrowingEnabled]">
+                    {{orderMgmt.exceptionThrowingButtonText}}
                 </button>                  
             </div>
             <div class="pull-right">

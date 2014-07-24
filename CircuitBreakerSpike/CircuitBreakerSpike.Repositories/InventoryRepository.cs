@@ -14,7 +14,7 @@ namespace CircuitBreakerSpike.Repositories
         {
             if (ThrowExceptions)
             {
-                throw new ApplicationException("Inventory system is not responding.");
+                throw new Exception("Inventory system is not responding.");
             }
             return new List<InventoryItem>
             {

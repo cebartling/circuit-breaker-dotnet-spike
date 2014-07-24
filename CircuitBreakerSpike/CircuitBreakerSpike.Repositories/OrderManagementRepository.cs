@@ -14,7 +14,7 @@ namespace CircuitBreakerSpike.Repositories
         {
             if (ThrowExceptions)
             {
-                throw new ApplicationException("Order management system is not responding.");
+                throw new Exception("Order management system is not responding.");
             }
             return new List<Order>
             {
