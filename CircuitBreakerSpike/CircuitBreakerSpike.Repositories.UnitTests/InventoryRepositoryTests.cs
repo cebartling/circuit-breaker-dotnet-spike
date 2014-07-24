@@ -23,8 +23,8 @@ namespace CircuitBreakerSpike.Repositories.UnitTests
             Assert.AreEqual(9, orders.Count());
         }
 
-        [TestMethod, ExpectedException(typeof(ApplicationException))]
-        public void FindOrders_ThrowsApplicationException()
+        [TestMethod, ExpectedException(typeof(Exception))]
+        public void FindOrders_ThrowsException()
         {
             _repository.ThrowExceptions = true;
             _repository.FindInventoryItems();
