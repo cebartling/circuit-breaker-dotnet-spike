@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace CircuitBreakerSpike.Repositories
 {
@@ -16,6 +17,8 @@ namespace CircuitBreakerSpike.Repositories
         {
             if (_repositoryExceptionThrowingState.ThrowExceptions)
             {
+                int millisecondsTimeout = _repositoryExceptionThrowingState.SecondsToWaitBeforeThrowingException * 1000;
+                Thread.Sleep(millisecondsTimeout);
                 throw new Exception("Order management system is not responding.");
             }
             return new List<Order>

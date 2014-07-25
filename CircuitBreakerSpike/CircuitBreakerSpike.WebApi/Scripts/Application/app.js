@@ -11,6 +11,7 @@ var controller = app.controller('OrderManagementController', function($scope, $l
     this.isRetrievingOrders = false;
     this.exceptionThrowingButtonText = 'Start throwing exceptions';
     this.elapsedTimeInMilliseconds = 0;
+    this.secondsToWaitBeforeThrowingException = 10;
 
     this.toggleRetrieveOrders = function() {
         if (!this.isRetrievingOrders) {
@@ -54,12 +55,18 @@ var controller = app.controller('OrderManagementController', function($scope, $l
             $log.info('Disabling exception throwing.');
             this.exceptionThrowingEnabled = false;
             this.exceptionThrowingButtonText = 'Start throwing exceptions';
-            $http.post('/api/Exceptions', { Enabled: false });
+            $http.post('/api/Exceptions', {
+                Enabled: false,
+                SecondsToWaitBeforeThrowingException: this.secondsToWaitBeforeThrowingException
+            });
         } else {
             $log.info('Enabling exception throwing.');
             this.exceptionThrowingEnabled = true;
             this.exceptionThrowingButtonText = 'Stop throwing exceptions';
-            $http.post('/api/Exceptions', { Enabled: true });
+            $http.post('/api/Exceptions', {
+                Enabled: true,
+                SecondsToWaitBeforeThrowingException: this.secondsToWaitBeforeThrowingException
+            });
         }
     };
 
