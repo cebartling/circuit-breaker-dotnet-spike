@@ -5,14 +5,16 @@ namespace CircuitBreakerSpike.Repositories
 {
     public class InventoryRepository : IInventoryRepository
     {
-        public InventoryRepository()
+        private IRepositoryExceptionThrowingState _repositoryExceptionThrowingState;
+
+        public InventoryRepository(IRepositoryExceptionThrowingState repositoryExceptionThrowingState)
         {
-            ThrowExceptions = false;
+            _repositoryExceptionThrowingState = repositoryExceptionThrowingState;
         }
 
         public IEnumerable<InventoryItem> FindInventoryItems()
         {
-            if (ThrowExceptions)
+            if (_repositoryExceptionThrowingState.ThrowExceptions)
             {
                 throw new Exception("Inventory system is not responding.");
             }
@@ -30,6 +32,6 @@ namespace CircuitBreakerSpike.Repositories
             };
         }
 
-        public bool ThrowExceptions { get; set; }
+        
     }
 }

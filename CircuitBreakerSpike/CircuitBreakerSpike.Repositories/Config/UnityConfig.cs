@@ -13,8 +13,9 @@ namespace CircuitBreakerSpike.Repositories.Config
         public static void RegisterComponents(IUnityContainer container)
         {
             container
-                .RegisterInstance(typeof (IOrderManagementRepository), new OrderManagementRepository())
-                .RegisterInstance(typeof (IInventoryRepository), new InventoryRepository());
+                .RegisterInstance(typeof(IRepositoryExceptionThrowingState), new RepositoryExceptionThrowingState())
+                .RegisterType<IOrderManagementRepository, OrderManagementRepository>(new HierarchicalLifetimeManager())
+                .RegisterType<IInventoryRepository, InventoryRepository>(new HierarchicalLifetimeManager());
         }
     }
 }
