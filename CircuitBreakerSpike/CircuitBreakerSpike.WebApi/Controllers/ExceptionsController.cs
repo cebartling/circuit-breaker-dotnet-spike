@@ -15,18 +15,13 @@ namespace CircuitBreakerSpike.WebApi.Controllers
             _repositoryExceptionThrowingState = repositoryExceptionThrowingState;
         }
 
-        // GET api/exceptions
-        public IEnumerable<string> Get()
-        {
-            return new[] {"value1", "value2"};
-        }
 
         // POST api/exceptions
         public void Post([FromBody] ExceptionOptions exceptionOptions)
         {
             Debug.WriteLine(string.Format("ExceptionOptions: {0}", exceptionOptions.Enabled));
             _repositoryExceptionThrowingState.ThrowExceptions = Boolean.Parse(exceptionOptions.Enabled);
-            _repositoryExceptionThrowingState.SecondsToWaitBeforeThrowingException = exceptionOptions.SecondToWait;
+            _repositoryExceptionThrowingState.SecondsToWaitBeforeThrowingException = exceptionOptions.SecondsToWaitBeforeThrowingException;
         }
 
     }
@@ -34,6 +29,6 @@ namespace CircuitBreakerSpike.WebApi.Controllers
     public class ExceptionOptions
     {
         public string Enabled { get; set; }
-        public int SecondToWait { get; set; }
+        public int SecondsToWaitBeforeThrowingException { get; set; }
     }
 }

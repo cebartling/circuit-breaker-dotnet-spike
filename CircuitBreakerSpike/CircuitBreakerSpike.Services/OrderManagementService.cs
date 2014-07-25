@@ -8,16 +8,13 @@ namespace CircuitBreakerSpike.Services
     public class OrderManagementService : IOrderManagementService
     {
         private readonly IOrderManagementRepository _orderManagementRepository;
-        private IInventoryRepository _inventoryRepository;
-        private readonly CircuitBreaker _orderManagementRepositoryCircuitBreaker;
+        private readonly ICircuitBreaker _orderManagementRepositoryCircuitBreaker;
 
-        public OrderManagementService(IOrderManagementRepository orderManagementRepository, 
-            IInventoryRepository inventoryRepository)
+        public OrderManagementService(IOrderManagementRepository orderManagementRepository,
+            ICircuitBreaker orderManagementRepositoryCircuitBreaker)
         {
             _orderManagementRepository = orderManagementRepository;
-            _inventoryRepository = inventoryRepository;
-            var openToHalfOpenWaitTime = new TimeSpan(0,0,0,20);
-            _orderManagementRepositoryCircuitBreaker = new CircuitBreaker(openToHalfOpenWaitTime);
+            _orderManagementRepositoryCircuitBreaker = orderManagementRepositoryCircuitBreaker;
         }
 
 

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using CircuitBreakerSpike.Core;
 using CircuitBreakerSpike.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -8,33 +10,34 @@ namespace CircuitBreakerSpike.Services.UnitTests
     [TestClass]
     public class OrderManagementServiceTests
     {
-        private Mock<IInventoryRepository> _inventoryRepositoryMock;
+        private Mock<ICircuitBreaker> _circuitBreakerMock;
         private Mock<IOrderManagementRepository> _orderManagementRepositoryMock;
         private IOrderManagementService _service;
 
         [TestInitialize]
         public void InitializeBeforeEachTest()
         {
-            _inventoryRepositoryMock = new Mock<IInventoryRepository>();
+            _circuitBreakerMock = new Mock<ICircuitBreaker>();
             _orderManagementRepositoryMock = new Mock<IOrderManagementRepository>();
             _service = new OrderManagementService(_orderManagementRepositoryMock.Object, 
-                _inventoryRepositoryMock.Object);
+                _circuitBreakerMock.Object);
         }
 
         [TestMethod]
-        public void GetOrders_VerifyOrderManagementRepositoryCollaboration()
+        public void GetOrders_VerifyCircuitBreakerCollaboration()
         {
+            _circuitBreakerMock.Setup(x => x.ExecuteAction(It.IsAny<Action>()));
             IEnumerable<Order> expectedOrders = new List<Order>
             {
                 new Order(),
                 new Order(),
                 new Order()
             };
-            _orderManagementRepositoryMock.Setup(x => x.FindOrders()).Returns(expectedOrders);
 
             var orders = _service.GetOrders();
 
-            _orderManagementRepositoryMock.Verify(x => x.FindOrders());
+           _circuitBreakerMock.Verify(x => x.ExecuteAction(It.IsAny<Action>()));
+
         }
     }
 }

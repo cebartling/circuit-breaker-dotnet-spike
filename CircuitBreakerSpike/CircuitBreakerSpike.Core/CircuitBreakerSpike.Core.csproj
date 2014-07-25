@@ -44,6 +44,7 @@
     <Compile Include="CircuitBreakerStateEnum.cs" />
     <Compile Include="CircuitBreakerStateStore.cs" />
     <Compile Include="CircuitBreakerStateStoreFactory.cs" />
+    <Compile Include="ICircuitBreaker.cs" />
     <Compile Include="ICircuitBreakerStateStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

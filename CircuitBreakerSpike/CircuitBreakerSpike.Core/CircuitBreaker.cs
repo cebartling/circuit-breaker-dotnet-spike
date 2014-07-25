@@ -6,7 +6,7 @@ namespace CircuitBreakerSpike.Core
     /// <summary>
     ///     Circuit breaker pattern implementation.
     /// </summary>
-    public class CircuitBreaker
+    public class CircuitBreaker : ICircuitBreaker
     {
         private readonly object _halfOpenSyncObject = new object();
 
@@ -17,7 +17,7 @@ namespace CircuitBreakerSpike.Core
 
         public CircuitBreaker()
         {
-            OpenToHalfOpenWaitTime = new TimeSpan(0,0,0,10);
+            OpenToHalfOpenWaitTime = new TimeSpan(0,0,0,20);
         }
 
         public CircuitBreaker(TimeSpan openToHalfOpenWaitTime)

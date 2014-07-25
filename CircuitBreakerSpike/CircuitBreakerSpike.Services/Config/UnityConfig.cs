@@ -1,4 +1,6 @@
-﻿using Microsoft.Practices.Unity;
+﻿using CircuitBreakerSpike.Core;
+using CircuitBreakerSpike.Repositories;
+using Microsoft.Practices.Unity;
 
 namespace CircuitBreakerSpike.Services.Config
 {
@@ -16,7 +18,16 @@ namespace CircuitBreakerSpike.Services.Config
             Repositories.Config.UnityConfig.RegisterComponents(container);
 
             container
-                .RegisterType<IOrderManagementService, OrderManagementService>(new HierarchicalLifetimeManager());
+                .RegisterInstance(typeof (ICircuitBreaker),
+                    "orderManagementRepositoryCircuitBreaker",
+                    new CircuitBreaker())
+                .RegisterInstance(typeof (ICircuitBreaker),
+                    "inventoryRepositoryCircuitBreaker",
+                    new CircuitBreaker())
+                .RegisterType<IOrderManagementService, OrderManagementService>(
+                    new InjectionConstructor(
+                        new ResolvedParameter<IOrderManagementRepository>(),
+                        new ResolvedParameter<ICircuitBreaker>("orderManagementRepositoryCircuitBreaker")));
         }
     }
 }
