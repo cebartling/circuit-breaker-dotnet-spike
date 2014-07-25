@@ -1,4 +1,4 @@
 circuit-breaker-dotnet-spike
 ============================
 
-Circuit breaker pattern, implemented in C#, for the .NET platform.
+Circuit breaker pattern, implemented in C#, for the .NET platform.  This spike solution draws heavily from the Microsoft Cloud Patterns catalog, using the interfaces and classes described in the [Circuit Breaker entry](http://msdn.microsoft.com/en-us/library/dn589784.aspx).  This spike solution builds up an ASP.NET Web API application using a single service and a single repository.  An AngularJS client controls the simulation through the ReSTful API.  The circuit breaker is used in the service to wrap the call to the repository, thus allowing the service invocation to fail-fast after the circuit breaker has been tripped.  A pause has been built into the repository to simulate a timeout exception, typical of external resource exception scenarios. 
