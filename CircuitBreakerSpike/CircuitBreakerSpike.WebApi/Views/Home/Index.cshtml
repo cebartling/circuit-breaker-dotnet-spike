@@ -30,6 +30,12 @@
                                 ng-class="{true: 'btn-danger', false: 'btn-success'}[orderMgmt.exceptionThrowingEnabled]">
                             {{orderMgmt.exceptionThrowingButtonText}}
                         </button>
+                        &nbsp;
+                        <button class="btn btn-default"
+                                ng-click="orderMgmt.toggleCircuitBreaker()"
+                                ng-class="{true: 'btn-danger', false: 'btn-success'}[orderMgmt.circuitBreakerEnabled]">
+                            {{orderMgmt.toggleCircuitBreakerButtonText}}
+                        </button>
                     </div>
                 </div>
             </form>

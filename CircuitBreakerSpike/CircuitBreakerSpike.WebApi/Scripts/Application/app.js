@@ -6,12 +6,14 @@ var controller = app.controller('OrderManagementController', function($scope, $l
 
     this.hasErrors = false;
     this.exceptionThrowingEnabled = false;
+    this.circuitBreakerEnabled = true;
     this.numberOfInvocations = 0;
     this.retrieveOrdersButtonText = 'Start retrieving orders';
     this.isRetrievingOrders = false;
     this.exceptionThrowingButtonText = 'Start throwing exceptions';
     this.elapsedTimeInMilliseconds = 0;
     this.secondsToWaitBeforeThrowingException = 10;
+    this.toggleCircuitBreakerButtonText = 'Disable circuit breaker';
 
     this.toggleRetrieveOrders = function() {
         if (!this.isRetrievingOrders) {
@@ -30,7 +32,7 @@ var controller = app.controller('OrderManagementController', function($scope, $l
     this.executeOrderRetrieval = function() {
         if (this.isRetrievingOrders) {
             $log.info('Retrieving orders...');
-            var func = $.proxy(function () { this.executeOrderRetrieval(); }, this);
+            var func = $.proxy(function() { this.executeOrderRetrieval(); }, this);
             var promise = $http.get('api/Orders');
             var startTime = $.now();
             promise.success($.proxy(function(data) {
@@ -68,6 +70,12 @@ var controller = app.controller('OrderManagementController', function($scope, $l
                 SecondsToWaitBeforeThrowingException: this.secondsToWaitBeforeThrowingException
             });
         }
+    };
+
+    this.toggleCircuitBreaker = function () {
+        this.circuitBreakerEnabled = !this.circuitBreakerEnabled;
+        this.toggleCircuitBreakerButtonText = (this.circuitBreakerEnabled) ? 'Disable circuit breaker' : 'Enable circuit breaker';
+        $log.info('Circuit breaker is ' + ((this.circuitBreakerEnabled) ? 'ENABLED' : 'DISABLED') + '.');
     };
 
 });
