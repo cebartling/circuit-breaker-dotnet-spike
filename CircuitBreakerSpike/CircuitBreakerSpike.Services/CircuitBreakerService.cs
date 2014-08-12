@@ -21,7 +21,7 @@ namespace CircuitBreakerSpike.Services
         {
             if (_map.ContainsKey(circuitBreakerName))
             {
-                // Enable the circuit breaker.
+                _map[circuitBreakerName].Enabled = true;
             }
         }
 
@@ -29,7 +29,7 @@ namespace CircuitBreakerSpike.Services
         {
             if (_map.ContainsKey(circuitBreakerName))
             {
-                // Disable the circuit breaker.
+                _map[circuitBreakerName].Enabled = false;
             }
         }
     }

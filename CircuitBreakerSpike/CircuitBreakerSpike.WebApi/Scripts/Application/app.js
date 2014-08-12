@@ -76,6 +76,9 @@ var controller = app.controller('OrderManagementController', function($scope, $l
         this.circuitBreakerEnabled = !this.circuitBreakerEnabled;
         this.toggleCircuitBreakerButtonText = (this.circuitBreakerEnabled) ? 'Disable circuit breaker' : 'Enable circuit breaker';
         $log.info('Circuit breaker is ' + ((this.circuitBreakerEnabled) ? 'ENABLED' : 'DISABLED') + '.');
+        $http.post('/api/CircuitBreakers', {
+            OrderManagementCircuitBreakerEnabled: this.circuitBreakerEnabled
+        });
     };
 
 });
