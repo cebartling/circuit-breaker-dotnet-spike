@@ -13,6 +13,8 @@ namespace CircuitBreakerSpike.Core
         private readonly ICircuitBreakerStateStore _stateStore =
             CircuitBreakerStateStoreFactory.GetCircuitBreakerStateStore();
 
+        private bool m_enabled = true;
+
         public TimeSpan OpenToHalfOpenWaitTime { get; set; }
 
         public CircuitBreaker()
@@ -40,13 +42,19 @@ namespace CircuitBreakerSpike.Core
             get { return CircuitBreakerStateEnum.HalfOpen == _stateStore.State; }
         }
 
+        public bool Enabled
+        {
+            get { return m_enabled; }
+            set { m_enabled = value; }
+        }
+
         /// <summary>
         ///     Execute an Action with a circuit breaker wrapped around it.
         /// </summary>
         /// <param name="action">A System.Action delegate.</param>
         public void ExecuteAction(Action action)
         {
-            if (IsOpen)
+            if (Enabled && IsOpen)
             {
                 TryActionWhenCircuitIsOpen(action);
             }
