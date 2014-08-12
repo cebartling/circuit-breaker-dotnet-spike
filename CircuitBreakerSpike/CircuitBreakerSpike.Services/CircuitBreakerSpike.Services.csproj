@@ -58,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CircuitBreakerService.cs" />
+    <Compile Include="ICircuitBreakerService.cs" />
     <Compile Include="IOrderManagementService.cs" />
     <Compile Include="OrderManagementService.cs" />
     <Compile Include="Config\UnityConfig.cs" />

@@ -27,7 +27,11 @@ namespace CircuitBreakerSpike.Services.Config
                 .RegisterType<IOrderManagementService, OrderManagementService>(
                     new InjectionConstructor(
                         new ResolvedParameter<IOrderManagementRepository>(),
-                        new ResolvedParameter<ICircuitBreaker>("orderManagementRepositoryCircuitBreaker")));
+                        new ResolvedParameter<ICircuitBreaker>("orderManagementRepositoryCircuitBreaker")))
+                .RegisterType<ICircuitBreakerService, CircuitBreakerService>(
+                    new InjectionConstructor(
+                        new ResolvedParameter<ICircuitBreaker>("orderManagementRepositoryCircuitBreaker"),
+                        new ResolvedParameter<ICircuitBreaker>("inventoryRepositoryCircuitBreaker")));
         }
     }
 }
